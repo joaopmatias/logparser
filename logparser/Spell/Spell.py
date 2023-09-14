@@ -343,7 +343,7 @@ class LogParser:
         regex = ""
         for k in range(len(splitters)):
             if k % 2 == 0:
-                splitter = re.sub(' +', '\\\s+', splitters[k])
+                splitter = re.sub(" +", "\\\s+", splitters[k])
                 regex += splitter
             else:
                 header = splitters[k].strip("<").strip(">")
@@ -357,7 +357,7 @@ class LogParser:
         if "<*>" not in template_regex:
             return []
         template_regex = re.sub(r"([^A-Za-z0-9])", r"\\\1", template_regex)
-        template_regex = re.sub(r'\\ +', r'[^A-Za-z0-9]+', template_regex)
+        template_regex = re.sub(r"\\ +", r"[^A-Za-z0-9]+", template_regex)
         template_regex = "^" + re.sub(r"(\\\<\\\*\\\>)+", "(.*?)", template_regex) + "$"
         parameter_list = re.findall(template_regex, row["Content"])
         parameter_list = parameter_list[0] if parameter_list else ()
